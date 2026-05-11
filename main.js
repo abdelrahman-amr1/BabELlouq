@@ -41,4 +41,29 @@ document.addEventListener('DOMContentLoaded', () => {
             marqueeTrack.style.animationPlayState = 'running';
         });
     }
+
+    // Pricing Toggle Logic
+    const toggleBtns = document.querySelectorAll('.toggle-btn');
+    const pricingGrids = document.querySelectorAll('.pricing-grid');
+
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            toggleBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
+
+            // Hide all pricing grids
+            pricingGrids.forEach(grid => {
+                grid.classList.remove('active');
+            });
+
+            // Show target grid
+            const targetId = btn.getAttribute('data-target');
+            const targetGrid = document.getElementById(targetId);
+            if (targetGrid) {
+                targetGrid.classList.add('active');
+            }
+        });
+    });
 });
